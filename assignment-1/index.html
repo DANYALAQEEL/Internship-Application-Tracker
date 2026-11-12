@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Internship Application Tracker</title>
+  
+  <!-- Custom Stylesheet (Vanilla CSS, no external libraries) -->
+  <link rel="stylesheet" href="css/style.css">
+  
+  <!-- Main Application Script (Deferred to execute after DOM parses) -->
+  <script src="js/app.js" defer></script>
+</head>
+<body>
+
+  <!-- =====================================================================
+       APP CONTAINER / MAIN LAYOUT SHELL
+       Provides structural container for the sidebar and main dashboard.
+       ===================================================================== -->
+  <div class="app-layout">
+
+    <!-- ===================================================================
+         SIDEBAR NAVIGATION (<aside>, <nav>)
+         Contains branding, navigation links, and student profile preview.
+         Collapses into top-bar or compact menu on mobile/tablet viewports.
+         =================================================================== -->
+    <aside class="app-sidebar" aria-label="Main Navigation">
+      <div class="sidebar-brand">
+        <!-- Logo Icon / Branding -->
+        <span class="brand-icon" aria-hidden="true">&#128188;</span>
+        <h2 class="brand-title">InternTrack</h2>
+      </div>
+
+      <nav class="sidebar-nav">
+        <ul class="nav-list">
+          <li class="nav-item">
+            <a href="#dashboard" class="nav-link active" aria-current="page">
+              <span class="nav-icon" aria-hidden="true">&#128202;</span>
+              <span class="nav-text">Dashboard</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="#applications" class="nav-link">
+              <span class="nav-icon" aria-hidden="true">&#128196;</span>
+              <span class="nav-text">Applications</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="#reports" class="nav-link">
+              <span class="nav-icon" aria-hidden="true">&#128200;</span>
+              <span class="nav-text">Reports</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="#profile" class="nav-link">
+              <span class="nav-icon" aria-hidden="true">&#128100;</span>
+              <span class="nav-text">Profile</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+      <!-- Sidebar Footer / Student User Indicator -->
+      <div class="sidebar-footer">
+        <div class="user-avatar" aria-hidden="true">ST</div>
+        <div class="user-info">
+          <p class="user-name">Student Portal</p>
+          <span class="user-role">Applicant</span>
+        </div>
+      </div>
+    </aside>
+
+    <!-- ===================================================================
+         MAIN WORKSPACE (<main>)
+         Houses the primary dashboard, statistics, search/filter, and list.
+         =================================================================== -->
+    <main class="main-content" id="main-content">
+
+      <!-- TOP DASHBOARD HEADER (<header>) -->
+      <header class="content-header">
+        <div class="header-titles">
+          <h1 class="page-title">Internship Applications</h1>
+          <p class="page-subtitle">Track, organize, and monitor your career opportunities</p>
+        </div>
+        <div class="header-actions">
+          <button type="button" id="open-modal-btn" class="btn btn-primary" aria-haspopup="dialog">
+            <span class="btn-icon" aria-hidden="true">+</span>
+            <span>Add Application</span>
+          </button>
+        </div>
+      </header>
+
+      <!-- FEEDBACK NOTIFICATION BANNER (Screen reader live region) -->
+      <div id="feedback-banner" class="feedback-banner" role="status" aria-live="polite" hidden></div>
+
+      <!-- =================================================================
+           DASHBOARD STATISTIC CARDS (<section>)
+           Displays high-level quantitative metrics calculated dynamically.
+           ================================================================= -->
+      <section class="stats-section" aria-label="Application Summary Statistics">
+        
+        <article class="stat-card" id="card-total">
+          <div class="stat-content">
+            <span class="stat-label">Total Applied</span>
+            <strong class="stat-number" id="stat-total">0</strong>
+          </div>
+          <div class="stat-badge stat-badge-blue" aria-hidden="true">&#128188;</div>
+        </article>
+
+        <article class="stat-card" id="card-review">
+          <div class="stat-content">
+            <span class="stat-label">Under Review</span>
+            <strong class="stat-number" id="stat-review">0</strong>
+          </div>
+          <div class="stat-badge stat-badge-amber" aria-hidden="true">&#9203;</div>
+        </article>
+
+        <article class="stat-card" id="card-interview">
+          <div class="stat-content">
+            <span class="stat-label">Interviewing</span>
+            <strong class="stat-number" id="stat-interview">0</strong>
+          </div>
+          <div class="stat-badge stat-badge-purple" aria-hidden="true">&#128172;</div>
+        </article>
+
+        <article class="stat-card" id="card-offer">
+          <div class="stat-content">
+            <span class="stat-label">Offers Received</span>
+            <strong class="stat-number" id="stat-offer">0</strong>
+          </div>
+          <div class="stat-badge stat-badge-green" aria-hidden="true">&#127881;</div>
+        </article>
+
+        <article class="stat-card" id="card-rejected">
+          <div class="stat-content">
+            <span class="stat-label">Rejected</span>
+            <strong class="stat-number" id="stat-rejected">0</strong>
+          </div>
+          <div class="stat-badge stat-badge-rose" aria-hidden="true">&#10006;</div>
+        </article>
+
+      </section>
+
+      <!-- =================================================================
+           APPLICATIONS DIRECTORY SECTION (<section>)
+           Houses search, filter, data table (desktop), and card list (mobile).
+           ================================================================= -->
+      <section class="directory-section" aria-label="Internship Directory">
+
+        <!-- CONTROLS & FILTER TOOLBAR (<search>, <div>) -->
+        <div class="controls-toolbar">
+          
+          <!-- Search Input -->
+          <div class="search-group">
+            <label for="search-input" class="search-label">
+              <span class="search-icon" aria-hidden="true">&#128269;</span>
+              <span class="visually-hidden">Search applications</span>
+            </label>
+            <input 
+              type="search" 
+              id="search-input" 
+              class="search-input" 
+              placeholder="Search by company or position..." 
+              autocomplete="off"
+            >
+          </div>
+
+          <!-- Status Filter Dropdown -->
+          <div class="filter-group">
+            <label for="status-filter" class="filter-label">Filter by:</label>
+            <select id="status-filter" class="filter-select">
+              <option value="All">All Statuses</option>
+              <option value="Applied">Applied</option>
+              <option value="Under Review">Under Review</option>
+              <option value="Interview">Interview</option>
+              <option value="Offered">Offered</option>
+              <option value="Rejected">Rejected</option>
+            </select>
+          </div>
+
+        </div>
+
+        <!-- APPLICATIONS DATA TABLE (Semantic Desktop View & Mobile Cards via CSS) -->
+        <div class="table-container" tabindex="0" role="region" aria-label="Applications table">
+          <table class="applications-table" id="applications-table">
+            <caption class="visually-hidden">List of tracked internship applications with details and action buttons</caption>
+            <thead>
+              <tr>
+                <th scope="col">Company</th>
+                <th scope="col">Job Position</th>
+                <th scope="col">Location</th>
+                <th scope="col">Applied Date</th>
+                <th scope="col">Status</th>
+                <th scope="col">Actions</th>
+              </tr>
+            </thead>
+            <tbody id="applications-tbody">
+              <!-- Dynamically populated by JavaScript (app.js) -->
+            </tbody>
+          </table>
+        </div>
+
+        <!-- EMPTY STATE MESSAGE CONTAINER -->
+        <div id="empty-state" class="empty-state" hidden>
+          <div class="empty-icon" aria-hidden="true">&#128193;</div>
+          <h3 class="empty-title">No applications found</h3>
+          <p class="empty-text">No internship records match your current filter or search criteria.</p>
+          <button type="button" id="reset-filters-btn" class="btn btn-secondary">Clear Filters</button>
+        </div>
+
+      </section>
+
+    </main>
+
+  </div>
+
+  <!-- =====================================================================
+       NATIVE HTML5 MODAL DIALOG (<dialog>)
+       Accessible native modal for adding or editing internship records.
+       ===================================================================== -->
+  <dialog id="application-dialog" class="application-dialog" aria-labelledby="dialog-title">
+    <div class="dialog-wrapper">
+      
+      <!-- Dialog Header -->
+      <div class="dialog-header">
+        <h2 id="dialog-title" class="dialog-title">New Application</h2>
+        <button type="button" id="close-dialog-btn" class="dialog-close-btn" aria-label="Close dialog">&times;</button>
+      </div>
+
+      <!-- Application Form -->
+      <form id="application-form" class="application-form">
+        
+        <!-- Hidden input for record ID (allows distinguishing Add vs. Edit) -->
+        <input type="hidden" id="app-id" name="id" value="">
+
+        <!-- Company Name -->
+        <div class="form-group">
+          <label for="app-company" class="form-label">
+            Company Name <span class="required" aria-hidden="true">*</span>
+          </label>
+          <input 
+            type="text" 
+            id="app-company" 
+            name="company" 
+            class="form-control" 
+            placeholder="e.g. Systems Limited" 
+            required 
+            minlength="2" 
+            maxlength="50"
+          >
+          <span class="form-error" id="company-error" aria-live="polite"></span>
+        </div>
+
+        <!-- Job Position / Title -->
+        <div class="form-group">
+          <label for="app-position" class="form-label">
+            Job Position <span class="required" aria-hidden="true">*</span>
+          </label>
+          <input 
+            type="text" 
+            id="app-position" 
+            name="position" 
+            class="form-control" 
+            placeholder="e.g. Software Engineering Intern" 
+            required 
+            minlength="2" 
+            maxlength="50"
+          >
+          <span class="form-error" id="position-error" aria-live="polite"></span>
+        </div>
+
+        <!-- Location -->
+        <div class="form-group">
+          <label for="app-location" class="form-label">
+            Location <span class="required" aria-hidden="true">*</span>
+          </label>
+          <input 
+            type="text" 
+            id="app-location" 
+            name="location" 
+            class="form-control" 
+            placeholder="e.g. Islamabad (Hybrid)" 
+            required 
+            maxlength="50"
+          >
+          <span class="form-error" id="location-error" aria-live="polite"></span>
+        </div>
+
+        <!-- Date & Status Row -->
+        <div class="form-row">
+          
+          <!-- Application Date -->
+          <div class="form-group">
+            <label for="app-date" class="form-label">
+              Application Date <span class="required" aria-hidden="true">*</span>
+            </label>
+            <input 
+              type="date" 
+              id="app-date" 
+              name="applicationDate" 
+              class="form-control" 
+              required
+            >
+            <span class="form-error" id="date-error" aria-live="polite"></span>
+          </div>
+
+          <!-- Status Dropdown -->
+          <div class="form-group">
+            <label for="app-status" class="form-label">
+              Status <span class="required" aria-hidden="true">*</span>
+            </label>
+            <select id="app-status" name="status" class="form-control" required>
+              <option value="" disabled selected>Select status</option>
+              <option value="Applied">Applied</option>
+              <option value="Under Review">Under Review</option>
+              <option value="Interview">Interview</option>
+              <option value="Offered">Offered</option>
+              <option value="Rejected">Rejected</option>
+            </select>
+            <span class="form-error" id="status-error" aria-live="polite"></span>
+          </div>
+
+        </div>
+
+        <!-- Job Link URL -->
+        <div class="form-group">
+          <label for="app-url" class="form-label">Job Posting URL</label>
+          <input 
+            type="url" 
+            id="app-url" 
+            name="jobUrl" 
+            class="form-control" 
+            placeholder="https://company.com/careers/job"
+          >
+          <span class="form-error" id="url-error" aria-live="polite"></span>
+        </div>
+
+        <!-- Notes / Remarks -->
+        <div class="form-group">
+          <label for="app-notes" class="form-label">Notes & Follow-ups</label>
+          <textarea 
+            id="app-notes" 
+            name="notes" 
+            class="form-control form-textarea" 
+            rows="3" 
+            maxlength="300" 
+            placeholder="e.g. Round 1 technical interview scheduled..."
+          ></textarea>
+          <span class="char-count" id="notes-char-count">Max 300 characters</span>
+        </div>
+
+        <!-- Form Action Buttons -->
+        <div class="dialog-actions">
+          <button type="button" id="cancel-dialog-btn" class="btn btn-secondary" aria-label="Cancel and close dialog">Cancel</button>
+          <button type="submit" id="save-app-btn" class="btn btn-primary">Save Application</button>
+        </div>
+
+      </form>
+
+    </div>
+  </dialog>
+
+</body>
+</html>
