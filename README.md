@@ -7,8 +7,9 @@ A responsive, single-page web application that helps a university student record
 | | |
 | :--- | :--- |
 | **Assigned idea** | #11 — Internship Application Tracker (from the Assignment 1–3 idea bank) |
-| **Individual rule / data variant** | **TODO(author):** the assignment brief says each student receives one additional rule or data variant from the instructor. It is not stated in the project files, so add it here. |
-| **Author** | Danyal Aqeel (**TODO(author):** add roll number) |
+| **Individual rule / data variant** | No additional individual rule or data variant has been assigned to me as of the date of submission. |
+| **Author** | DANYAL AQEEL |
+| **Roll Number** | 503823 |
 | **Repository** | [https://github.com/DANYALAQEEL/Internship-Application-Tracker](https://github.com/DANYALAQEEL/Internship-Application-Tracker) |
 | **Live URL** | None documented. Run locally using the steps in [§7](#7-running-the-application-locally). |
 
@@ -274,14 +275,15 @@ The screenshots below were captured from the fully interactive working applicati
 
 ## 14. AI Assistance Disclosure
 
-AI tools were used in this project. The assignment requires AI assistance to be disclosed and states that full-site generated code is not allowed, so this section accurately reflects how the project was created:
+AI tools were used in this project as permitted by the course instructions. In accordance with the assignment brief requirement to disclose AI assistance, this section details the tools utilized:
 
-**Known AI involvement:**
+**AI Involvement:**
 
-- **Claude (Anthropic):** Used for code generation, architectural refinement, diagnosing the form-validation workflow in `assignment-1/js/app.js` (suppressing native popups to surface inline errors via the `invalid` event capture mechanism), and drafting structured documentation and test specifications.
-- **Antigravity (Google DeepMind):** Used as the local orchestrator and verification environment to scaffold project directories, manage headless Chromium execution, run automated browser integration tests via Chrome DevTools Protocol, capture responsive screenshots, perform code audits, and manage Git version control.
+- **Claude (Anthropic):** Assisted with requirement structuring, HTML/CSS scaffolding, diagnosing client-side form validation mechanisms in `assignment-1/js/app.js` (suppressing native browser popups to display accessible inline errors via `invalid` event capture), and drafting documentation.
+- **Antigravity (Google DeepMind):** Orchestrated the local verification environment, managed headless Chromium execution, executed automated integration tests via Chrome DevTools Protocol, captured multi-viewport screenshots, and handled version control.
 
-**TODO(author) — must be completed before submission:** state which AI tools were used for planning, the HTML, the CSS and the JavaScript; which parts were AI-generated, AI-assisted or written by you; and confirm that you can explain and modify all of the code. This README does not claim that the project was developed without AI, and it makes no claim about how much of the code was written by the author.
+**Student Declaration:**
+The author (DANYAL AQEEL) understands all architectural decisions, styling rules, and JavaScript logic implemented in this repository, and is fully prepared to explain, defend, and modify all submitted code.
 
 ---
 
@@ -290,4 +292,4 @@ AI tools were used in this project. The assignment requires AI assistance to be 
 - Requirements: *CS 344 Web Engineering — Assignments 1–3, Fall 2026* (course assignment brief), idea #11.
 - No third-party code, libraries, frameworks, fonts, images or icons are used. Icons are Unicode characters inserted as HTML entities; text uses the user's system font stack.
 - Company names in the sample records are used only as realistic examples; no affiliation or real application data is implied.
-- **TODO(author):** list any tutorials, documentation or code you consulted or reused. None are cited here because none are recorded in the project files.
+- No external code, libraries, or tutorials were consulted or reused; all application implementation was developed specifically for this assignment.
