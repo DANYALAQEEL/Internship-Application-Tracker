@@ -8,8 +8,8 @@ A responsive, single-page web application that helps a university student record
 | :--- | :--- |
 | **Assigned idea** | #11 — Internship Application Tracker (from the Assignment 1–3 idea bank) |
 | **Individual rule / data variant** | **TODO(author):** the assignment brief says each student receives one additional rule or data variant from the instructor. It is not stated in the project files, so add it here. |
-| **Author** | **TODO(author):** name and roll number |
-| **Repository** | **TODO(author):** GitHub URL |
+| **Author** | Danyal Aqeel (**TODO(author):** add roll number) |
+| **Repository** | [https://github.com/DANYALAQEEL/Internship-Application-Tracker](https://github.com/DANYALAQEEL/Internship-Application-Tracker) |
 | **Live URL** | None documented. Run locally using the steps in [§7](#7-running-the-application-locally). |
 
 ---
