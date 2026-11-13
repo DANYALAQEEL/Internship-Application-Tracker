@@ -19,7 +19,7 @@ These are the same at every width; only their arrangement changes.
 | Element | Content as implemented |
 | :--- | :--- |
 | **Brand** | Briefcase icon (HTML entity) + "InternTrack" |
-| **Navigation list** | Dashboard (marked active), Applications, Reports, Profile — see §6 for what these do |
+| **Navigation list** | Dashboard (marked active) and Applications — see §6 for what these do |
 | **User badge** (desktop only) | "ST" avatar, "Student Portal", "Applicant" — static text |
 | **Page header** | Title "Internship Applications", subtitle "Track, organize, and monitor your career opportunities", and the **+ Add Application** button |
 | **Feedback banner** | Hidden by default. After an add, edit or delete it shows a message for about 4 seconds (green for add/edit, red for delete). It is a polite live region. |
@@ -45,8 +45,8 @@ Two-column CSS Grid: a 240 px sticky sidebar and the main workspace. The dashboa
 | ----------------- |  Track, organize, and monitor your career opportunities                     |
 |  Dashboard (act.)|                                                                             |
 |  Applications    |  (feedback banner appears here after add / edit / delete)                   |
-|  Reports         |                                                                             |
-|  Profile         |  +----------+ +----------+ +-----------+ +----------+ +----------+           |
+|                  |                                                                             |
+|                  |  +----------+ +----------+ +-----------+ +----------+ +----------+           |
 |                  |  | Total    | | Under    | |Interviewing| | Offers   | | Rejected |           |
 |                  |  | Applied  | | Review   | |            | | Received | |          |           |
 |                  |  |   6      | |   1      | |    1       | |   1      | |   1      |           |
@@ -78,7 +78,7 @@ The sidebar is a compact top bar (brand + horizontally scrollable navigation lin
 
 ```text
 +--------------------------------------------------------------------------+
-| [icon] InternTrack      Dashboard  Applications  Reports  Profile        |
+| [icon] InternTrack      Dashboard  Applications                          |
 +--------------------------------------------------------------------------+
 | Internship Applications                               [ + Add Application ]|
 | Track, organize, and monitor your career opportunities                    |
@@ -206,11 +206,11 @@ The status name is always written as text inside the pill, so colour is not the 
 
 - **Edit** opens the dialog pre-filled with the record's values.
 - **Delete** opens the browser's confirmation prompt ("Are you sure you want to delete the application for "…" - …?"). Choosing *Cancel* keeps the record. Confirming removes it, updates the counters and shows a red banner.
-- **Empty state** (shown when the list to display is empty): folder icon, heading "No applications found", text "No internship records match your current filter or search criteria.", and a **Clear Filters** button that resets the search box and the status filter. The same message appears if every record has been deleted.
+- **Empty state** (shown when the list to display is empty): folder icon, heading "No applications found", text "No internship records match your current filter or search criteria.", and a **Clear Filters** button that resets the search box and the status filter. If every record has been deleted, the heading changes to "No applications yet", the text invites the user to add their first application, and the Clear Filters button is hidden.
 
 ---
 
-## 6. Navigation (Placeholder Status)
+## 6. Navigation
 
 The navigation list contains **Dashboard** and **Applications**. Each links to its respective section in the page (`#dashboard` for the five metric cards and `#applications` for the directory toolbar and records). Clicking either link smoothly scrolls to the target section and updates the active navigation state. Non-functional placeholder links from earlier drafts (Reports, Profile) were removed so that every navigation control is active and functional.
 
@@ -283,7 +283,7 @@ Items that appeared in earlier design drafts of this wireframe but **do not exis
 | Earlier draft item | Actual state |
 | :--- | :--- |
 | Calendar and Settings navigation items | Not present |
-| Reports and Profile as working screens | Present only as placeholder links (§6) |
+| Reports and Profile as working screens | Not present; the placeholder links were removed (§6) |
 | Search bar in the top header | Search is in the toolbar above the table |
 | Sort dropdown | Not implemented |
 | "Showing X of Y applications" line | Not implemented |

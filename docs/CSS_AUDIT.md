@@ -5,7 +5,7 @@
 **Audited File:** `assignment-1/css/style.css`  
 **Referenced Files:** `assignment-1/index.html`, `docs/PROJECT_BRIEF.md`, `docs/wireframe.md`  
 **Audit Date:** 2026-11-13  
-**Status:** Audit Complete — No code changes made (pending approval)
+**Status:** Audit Complete — the findings below were reviewed and later resolved (see Addendum, §7)
 
 ---
 
@@ -15,7 +15,7 @@ A comprehensive quality, accessibility, responsive, and compliance audit of the 
 
 The implementation strictly satisfies all Assignment 1 course requirements:
 - **Zero external dependencies:** No CSS frameworks (Tailwind, Bootstrap), no CDN icons, and no external web fonts.
-- **Meaningful Layout Systems:** CSS Grid is employed for the 2-column app shell and 4-metric statistics grid; Flexbox is utilized for navigation, toolbars, modal dialogs, and mobile card rows.
+- **Meaningful Layout Systems:** CSS Grid is employed for the 2-column app shell and 5-metric statistics grid; Flexbox is utilized for navigation, toolbars, modal dialogs, and mobile card rows.
 - **Responsive Breakpoints:** Two explicit breakpoints (`768px` and `1024px`) with an adaptive table-to-card mobile transformation using native `data-label` attributes.
 - **WCAG 2.2 Level AA Contrast:** All major text and status badges surpass the 4.5:1 ratio (with body text reaching 17.04:1).
 
@@ -47,7 +47,7 @@ The application was loaded in headless Chromium across 4 viewports. Actual rende
 
 #### Finding M-01: Empty Table Appearance Prior to JavaScript Execution
 - **File & Location:** `assignment-1/index.html` (lines 176–190), `assignment-1/css/style.css` (lines 405–440)
-- **Description:** Since the six hardcoded records were removed per Correction 1, `<tbody>` is empty on initial load. The table header (`Company`, `Job Position`, etc.) renders with an empty white box below it, while `<div id="empty-state">` contains `hidden`.
+- **Description:** Since the six hardcoded records were removed from the HTML (they are now rendered by JavaScript), `<tbody>` is empty on initial load. The table header (`Company`, `Job Position`, etc.) renders with an empty white box below it, while `<div id="empty-state">` contains `hidden`.
 - **Impact:** Before JavaScript initializes or if JavaScript is disabled, the page displays empty table headers without explanation.
 - **Suggested Resolution:** In Step 5 (JavaScript), ensure `app.js` immediately checks array length and displays `#empty-state` if `applications.length === 0`, or provide a CSS `:empty` pseudo-class fallback:
   ```css
@@ -64,7 +64,7 @@ The application was loaded in headless Chromium across 4 viewports. Actual rende
 
 ### 3.3 Low Severity / UI Polish
 
-#### Finding L-01: Placeholder Text Contrast Ratio
+#### Finding L-01: Placeholder Text Contrast Ratio (Resolved — see §7)
 - **File & Location:** `assignment-1/css/style.css` (line 386, 563)
 - **Description:** `--text-subtle: #94a3b8` used for `::placeholder` yields a contrast ratio of **2.44:1** against `#ffffff` and `#f8fafc`. While WCAG 2.2 AA exempts inactive placeholders from the 4.5:1 rule, users with low vision or high-glare screens benefit from slightly darker placeholder text.
 - **Suggested Resolution:** Adjust placeholder color token or override:
@@ -75,7 +75,7 @@ The application was loaded in headless Chromium across 4 viewports. Actual rende
   }
   ```
 
-#### Finding L-02: Action Buttons Click Target on Mobile Card View
+#### Finding L-02: Action Buttons Click Target on Mobile Card View (Resolved — see §7)
 - **File & Location:** `assignment-1/css/style.css` (line 460–475)
 - **Description:** On mobile card view, `.action-buttons` are aligned to the right. The buttons (`.btn-action`) have `padding: 6px 12px` (approx 28px height). Mobile touch guidelines (WCAG 2.5.5) recommend a target size of at least 44×44px or sufficient spacing to prevent mis-taps.
 - **Suggested Resolution:** Increase touch padding on mobile media query:
@@ -123,7 +123,7 @@ WCAG 2.2 Level AA requires a contrast ratio of at least **4.5:1** for regular te
 | Rubric Criteria | Checked Requirement | Audit Verification Result |
 | :--- | :--- | :--- |
 | **Vanilla Stack** | No frameworks, no external libraries | **100% Compliant:** Zero imports, zero CDNs, pure modern CSS3. |
-| **Box Model & Layout** | CSS Grid & Flexbox | **100% Compliant:** Used purposefully for 2-column layout, 4-stat grid, and responsive toolbars. |
+| **Box Model & Layout** | CSS Grid & Flexbox | **100% Compliant:** Used purposefully for 2-column layout, 5-stat grid, and responsive toolbars. |
 | **Breakpoints** | At least 2 media-query breakpoints | **100% Compliant:** Mobile-first base with `768px` (Tablet) and `1024px` (Desktop) breakpoints. |
 | **Mobile Experience** | Usable on mobile viewports | **100% Compliant:** Table rows collapse into stacked cards with labels via `content: attr(data-label)`. |
 

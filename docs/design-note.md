@@ -79,11 +79,11 @@ What was done:
 What was **not** done: testing in Firefox or Safari, testing on physical phones or tablets, testing with a screen reader, and a formal automated test suite.
 
 ### Stage 5 — Evaluation & Review
-- [`CSS_AUDIT.md`](CSS_AUDIT.md) reviews the stylesheet for layout, responsiveness and accessibility. Its findings that remain visible in the submitted CSS are: light-grey placeholder and character-count text (`#94a3b8`, roughly 2.5 : 1 against white, below the 4.5 : 1 guideline for normal text) and small action buttons (about 28 px tall) that are below the 44 px touch-target guideline.
+- [`CSS_AUDIT.md`](CSS_AUDIT.md) reviews the stylesheet for layout, responsiveness and accessibility. Its contrast and touch-target findings were fixed afterwards: secondary text, placeholders and the character counter now use `#64748b` (4.61 : 1 on white, meeting the 4.5 : 1 guideline), and the Edit/Delete buttons have a 36 px minimum height. They are still below the stricter 44 px touch-target guideline, which remains a known limitation.
 - This is a **partial** review. The project does not claim full WCAG 2.2 AA conformance.
 
 ### Stage 6 — Deployment & Maintenance
-- For Assignment 1 the application is delivered as static files in a GitHub repository and can be run by opening `assignment-1/index.html` in a browser (see the README). A hosted URL is not documented here.
+- For Assignment 1 the application is delivered as static files in a GitHub repository and can be run by opening `assignment-1/index.html` in a browser (see the README). It is also deployed to GitHub Pages by the workflow in `.github/workflows/deploy.yml`, which publishes the `assignment-1` folder; the live URL is given in the README.
 - Maintenance is planned as a progression through the later assignments (§3.3). The separation of rendering, state, validation and event wiring in `app.js` is intended to make that migration easier, but no later-stage functionality exists in this submission.
 
 ---
@@ -167,7 +167,7 @@ The *Add / Edit* dialog is a native `<dialog>` opened with `showModal()`. It is 
 | Location | **Required** (up to 50 characters). |
 | Application date | Must be a real calendar date and **no later than 30 days after today** (the date picker's `max` is set from the user's local date when the page loads). There is no earliest date. |
 | Job posting URL | Optional. If entered, it must be a valid URL using **`http` or `https`** only. |
-| Sidebar items | *Dashboard*, *Applications*, *Reports* and *Profile* are links to in-page anchors that do not exist, so they do not change the view. They are visual placeholders. The user badge ("Student Portal / Applicant") is static text; there is no login. |
-| Empty state | The same message ("No applications found … match your current filter or search criteria") and *Clear Filters* button are used whether nothing matches the filters or every record has been deleted. |
+| Sidebar items | *Dashboard* and *Applications* link to the real in-page sections `#dashboard` and `#applications`; clicking one scrolls smoothly to it and updates the active link. Earlier placeholder links (Reports, Profile) were removed so there are no dead links. The user badge ("Student Portal / Applicant") is static text; there is no login. |
+| Empty state | Two messages are used. If records exist but none match the search/filter, the page shows "No applications found" with a *Clear Filters* button. If every record has been deleted, it shows "No applications yet" with a prompt to add one, and the *Clear Filters* button is hidden. |
 | Accessibility | Labelled controls, landmarks, a live region for notifications, focus styling and inline error messages linked to fields are implemented. Conformance with WCAG 2.2 AA is **not** claimed; see the limits in §2 (Stage 5). |
 | Performance | No performance measurements were made, and none are claimed. |
