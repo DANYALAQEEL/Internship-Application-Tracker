@@ -73,7 +73,7 @@ The project follows six stages. The stage names below are used consistently in t
 
 ### Stage 4 — Testing
 What was done:
-- Layout was checked at four viewport widths (375, 768, 1024 and 1440 px) in headless Chromium during the CSS audit ([`CSS_AUDIT.md`](CSS_AUDIT.md)). That audit was performed *before* the JavaScript was written, so it covers layout, not behaviour.
+- Layout was checked at four viewport widths (375, 768, 1024 and 1440 px) in headless Chromium during the CSS audit ([`CSS_AUDIT.md`](CSS_AUDIT.md)). That audit was performed *before* the JavaScript was written, so it covers layout, not behaviour. After the JavaScript was integrated, the page was measured for horizontal overflow at widths from 320 px to 1440 px; an overflow found between 1024 px and about 1145 px was corrected (see the addendum in `CSS_AUDIT.md`).
 - After a form-validation correction (native browser validation was preventing the custom inline error messages from showing), the Add, Edit, Delete, search, filter and validation workflows were exercised in Chromium with scripted browser interactions, including clicking *Save* with an empty form, too-short text, invalid URLs, an out-of-range date, whitespace-only input and a successful add and edit. These scripts are not part of the repository.
 
 What was **not** done: testing in Firefox or Safari, testing on physical phones or tablets, testing with a screen reader, and a formal automated test suite.
@@ -155,7 +155,7 @@ The stylesheet is written **mobile-first**: the base rules describe the narrow l
 
 The *Add / Edit* dialog is a native `<dialog>` opened with `showModal()`. It is centred, is `100% − 32 px` wide up to a maximum of 540 px, scrolls inside itself when the screen is short (maximum height 90 vh), and uses a dimmed, slightly blurred backdrop.
 
-**Limits of this strategy.** The action buttons (*Edit*, *Delete*) are about 28 px tall and do not meet the 44 px touch-target guideline. Layout was checked at 375, 768, 1024 and 1440 px in Chromium only.
+**Limits of this strategy.** Between 1024 px and roughly 1200 px the five dashboard cards are narrow, so each card's icon badge wraps below its label (`flex-wrap`). The records table is wider than the main column at these widths and scrolls inside its own container. The action buttons (*Edit*, *Delete*) are about 28 px tall and do not meet the 44 px touch-target guideline. Layout was checked at 375, 768, 1024 and 1440 px in Chromium only.
 
 ---
 

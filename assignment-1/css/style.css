@@ -333,7 +333,7 @@ body {
    -------------------------------------------------------------------------- */
 .stats-section {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(2, minmax(0, 1fr)); /* minmax(0, ...) lets columns shrink instead of overflowing the page */
   gap: 12px;
   margin-bottom: 24px;
 }
@@ -346,6 +346,8 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  flex-wrap: wrap; /* if the card is too narrow, the icon badge drops below the text instead of overlapping it */
+  gap: 8px;
   box-shadow: var(--shadow-sm);
   transition: var(--transition);
 }
@@ -901,7 +903,7 @@ body {
 
   /* Expand Stats Grid to 3 Columns on Tablet */
   .stats-section {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 16px;
   }
 
@@ -1069,11 +1071,12 @@ body {
     padding: 32px 36px 48px;
     max-width: none;
     margin: 0;
+    min-width: 0; /* grid items default to min-width:auto; 0 lets the table container scroll instead of widening the page */
   }
 
   /* Expand Stats Grid to 5 Columns on Desktop */
   .stats-section {
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(5, minmax(0, 1fr));
     gap: 16px;
   }
 

@@ -29,8 +29,8 @@ The application was loaded in headless Chromium across 4 viewports. Actual rende
 
 | Viewport | Target Device | Rendered Dimensions | Screenshot Artifact | Test Outcome |
 | :--- | :--- | :--- | :--- | :--- |
-| **375px** | Mobile Smartphone | 375 × 812 px | [`screenshots/mobile-375.png`](screenshots/mobile-375.png) | **PASS** — No horizontal scroll; stats wrap into 2×2 grid; sidebar collapses to clean horizontal bar; toolbar stacks vertically. |
-| **768px** | Tablet / iPad | 768 × 1024 px | [`screenshots/tablet-768.png`](screenshots/tablet-768.png) | **PASS** — Stats expand into 4-column row; search and filter align horizontally; table returns to standard tabular display. |
+| **375px** | Mobile Smartphone | 375 × 812 px | [`screenshots/mobile-375.png`](screenshots/mobile-375.png) | **PASS** — No horizontal scroll; stats form a 2-column grid (the fifth card spans both columns); sidebar collapses to clean horizontal bar; toolbar stacks vertically. |
+| **768px** | Tablet / iPad | 768 × 1024 px | [`screenshots/tablet-768.png`](screenshots/tablet-768.png) | **PASS** — Stats expand into a 3-column grid (3 + 2); search and filter align horizontally; table returns to standard tabular display. |
 | **1024px** | Laptop / Small Desktop | 1024 × 768 px | [`screenshots/desktop-1024.png`](screenshots/desktop-1024.png) | **PASS** — 2-column CSS Grid triggers (`240px 1fr`); sticky vertical sidebar renders with navigation and user badge. |
 | **1440px** | Large Desktop | 1440 × 900 px | [`screenshots/desktop-1440.png`](screenshots/desktop-1440.png) | **PASS** — Generous whitespace, comfortable reading lines, aligned action buttons. |
 
@@ -135,3 +135,17 @@ The CSS styling is structurally sound, conforms to all course rules, and renders
 
 **Recommended Next Step:**
 Proceed directly to **Step 5 (JavaScript implementation in `assignment-1/js/app.js`)** to bind data, populate the 6 records, calculate dashboard metrics, and activate the search, filter, and modal workflows.
+
+---
+
+## 7. Addendum — Re-check After JavaScript Integration
+
+The audit above was performed before `app.js` rendered any records, so the table was empty. After the JavaScript was integrated, horizontal overflow was measured in headless Chromium (document `scrollWidth` versus `clientWidth`) at widths from 320 px to 1440 px.
+
+| Finding | Detail | Resolution |
+| :--- | :--- | :--- |
+| Page overflowed sideways between 1024 px and about 1145 px | 122 px of overflow at 1024 px: the *Add Application* button, the fifth dashboard card and the table's Actions column were cut off. Cause: the desktop grid column (`1fr`) could not shrink below the table's minimum content width. | `min-width: 0` added to `.main-content` in the 1024 px media query, so the table scrolls inside `.table-container`. |
+| Dashboard cards forced a minimum width | At 1024 px and at 320 px the stat grids (`1fr` columns) could not shrink below the card content width. | Stat grids changed to `minmax(0, 1fr)`; `.stat-card` allowed to `flex-wrap` so the icon badge wraps below the label when the card is narrow. |
+| Placeholder contrast | Recalculated at about 2.56 : 1 (`#94a3b8` on white); the figure of 2.44 : 1 above is slightly different but both are below 4.5 : 1. | Not changed (see Finding L-01). |
+
+After the fix, no horizontal page overflow was measured at any of 320, 360, 375, 414, 600, 767, 768, 900, 1023, 1024, 1100, 1200, 1280, 1366 and 1440 px. Findings L-01 and L-02 above remain unresolved. Only Chromium was used.

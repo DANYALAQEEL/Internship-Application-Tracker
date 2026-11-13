@@ -158,7 +158,7 @@ Five cards, always calculated from **all** records (they do not change when a se
 | 4 | **Offers Received** | `Offered` | 1 |
 | 5 | **Rejected** | `Rejected` | 1 |
 
-Each card has a text label, a large number and a coloured icon badge. Cards are grouped as 2 columns (mobile, with the fifth spanning two), 3 columns (tablet) or 5 columns (desktop).
+Each card has a text label, a large number and a coloured icon badge. In narrow cards (for example around 1024 px, or at 320 px) the icon badge wraps below the number instead of sitting to the right. Cards are grouped as 2 columns (mobile, with the fifth spanning two), 3 columns (tablet) or 5 columns (desktop).
 
 ---
 

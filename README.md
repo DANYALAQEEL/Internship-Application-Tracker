@@ -11,7 +11,7 @@ A responsive, single-page web application that helps a university student record
 | **Author** | DANYAL AQEEL |
 | **Roll Number** | 503823 |
 | **Repository** | [https://github.com/DANYALAQEEL/Internship-Application-Tracker](https://github.com/DANYALAQEEL/Internship-Application-Tracker) |
-| **Live URL** | None documented. Run locally using the steps in [§7](#7-running-the-application-locally). |
+| **Live URL** | [https://danyalaqeel.github.io/Internship-Application-Tracker/](https://danyalaqeel.github.io/Internship-Application-Tracker/) |
 
 ---
 
@@ -82,7 +82,7 @@ Internship-Application-Tracker/
 │   │   └── style.css       # All styling and responsive rules
 │   ├── js/
 │   │   └── app.js          # Data, rendering, search/filter, validation, dialog logic
-│   └── assets/             # Present in the repository; not referenced by the current code
+│   └── assets/             # Placeholder folder (currently empty); not referenced by the code
 ├── docs/
 │   ├── PROJECT_BRIEF.md    # Requirements, data model, sample dataset, validation rules
 │   ├── wireframe.md        # Interface layouts and component specification
@@ -221,7 +221,7 @@ The CSS is mobile-first, with two breakpoints (`min-width: 768px` and `min-width
 | **768 – 1023 px** (tablet) | Compact top bar | 3 columns (3 + 2) | Standard **table** in a horizontally scrollable container | Search and filter side by side |
 | **≥ 1024 px** (desktop) | Persistent 240 px sidebar (CSS Grid layout) with user badge | 5 columns | Standard table | Search and filter side by side |
 
-The Add/Edit dialog is centred, up to 540 px wide, and scrolls internally on short screens. Layout was checked at 375, 768, 1024 and 1440 px in Chromium. Details: [`docs/design-note.md`](docs/design-note.md) §4 and [`docs/wireframe.md`](docs/wireframe.md).
+The Add/Edit dialog is centred, up to 540 px wide, and scrolls internally on short screens. Layout was checked at 375, 768, 1024 and 1440 px in Chromium, and the page was measured for horizontal overflow at widths from 320 px to 1440 px (none found). In narrow dashboard cards (for example around 1024 px) the icon badge wraps below the label instead of overlapping it. Details: [`docs/design-note.md`](docs/design-note.md) §4 and [`docs/wireframe.md`](docs/wireframe.md).
 
 ---
 
@@ -252,7 +252,7 @@ The screenshots below were captured from the fully interactive working applicati
 | Viewport / View | Screenshot Link | Description |
 | :--- | :--- | :--- |
 | **Large Desktop — 1440 px** | [`docs/screenshots/desktop-1440.png`](docs/screenshots/desktop-1440.png) | Two-column CSS Grid shell, 240 px persistent sidebar, five-metric dashboard cards row, and full interactive records table. |
-| **Small Desktop — 1024 px** | [`docs/screenshots/desktop-1024.png`](docs/screenshots/desktop-1024.png) | Two-column layout at the desktop breakpoint threshold. |
+| **Small Desktop — 1024 px** | [`docs/screenshots/desktop-1024.png`](docs/screenshots/desktop-1024.png) | Two-column layout at the desktop breakpoint; all five dashboard cards and the *Add Application* button fit without horizontal page scrolling, and the records table scrolls inside its own container. |
 | **Tablet — 768 px** | [`docs/screenshots/tablet-768.png`](docs/screenshots/tablet-768.png) | Compact navigation bar, 3-column dashboard statistics grid, and horizontally scrollable table container. |
 | **Mobile — 375 px** | [`docs/screenshots/mobile-375.png`](docs/screenshots/mobile-375.png) | Mobile single-column view with 2-column statistics (5th card spanning full width) and records converted to stacked cards via `data-label`. |
 | **Add / Edit Modal Dialog** | [`docs/screenshots/dialog-add.png`](docs/screenshots/dialog-add.png) | Native HTML5 `<dialog>` opened in modal mode with backdrop overlay and form inputs. |
