@@ -1,5 +1,5 @@
 /* ==========================================================================
-   INTERNSHIP APPLICATION TRACKER — ASSIGNMENT 1 STYLESHEET
+   INTERNSHIP APPLICATION TRACKER Ã¢â‚¬â€ ASSIGNMENT 1 STYLESHEET
    Mobile-First Responsive Architecture (CSS Grid & Flexbox)
    Strictly Vanilla CSS (No External Fonts, Libraries, or Frameworks)
    ========================================================================== */
@@ -24,7 +24,7 @@
   /* Typography / Content Colors */
   --text-main: #0f172a;        /* Deep slate-900 (High contrast) */
   --text-muted: #475569;       /* Slate-600 */
-  --text-subtle: #94a3b8;      /* Slate-400 */
+  --text-subtle: #64748b;      /* Slate-500 (4.61:1 contrast on white - WCAG AA compliant) */
 
   /* Semantic Feedback & Status Badges */
   --status-applied-bg: #eff6ff;
@@ -84,10 +84,19 @@
   padding: 0;
 }
 
+[hidden] {
+  display: none !important;
+}
+
 html {
   font-size: 16px;
   scroll-behavior: smooth;
   -webkit-text-size-adjust: 100%;
+}
+
+#dashboard,
+#applications {
+  scroll-margin-top: 24px;
 }
 
 body {
@@ -687,7 +696,11 @@ body {
 }
 
 .btn-action {
-  padding: 6px 12px;
+  padding: 8px 14px;
+  min-height: 36px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   font-size: 0.775rem;
   font-weight: 600;
   border-radius: var(--radius-sm);

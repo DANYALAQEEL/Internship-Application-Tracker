@@ -212,7 +212,7 @@ The status name is always written as text inside the pill, so colour is not the 
 
 ## 6. Navigation (Placeholder Status)
 
-The navigation list contains **Dashboard**, **Applications**, **Reports** and **Profile**. Each is a link to an in-page anchor (`#dashboard`, `#applications`, `#reports`, `#profile`) **for which no matching element exists**, and `app.js` has no navigation code. These items therefore do not switch views or scroll; "Dashboard" is simply styled as the current item. The application is effectively a single page. There are no Calendar or Settings items, and no Reports or Profile screens.
+The navigation list contains **Dashboard** and **Applications**. Each links to its respective section in the page (`#dashboard` for the five metric cards and `#applications` for the directory toolbar and records). Clicking either link smoothly scrolls to the target section and updates the active navigation state. Non-functional placeholder links from earlier drafts (Reports, Profile) were removed so that every navigation control is active and functional.
 
 ---
 
@@ -311,8 +311,8 @@ Items that appeared in earlier design drafts of this wireframe but **do not exis
 - Status is conveyed by text as well as colour.
 
 **Known gaps (not claimed as conformant):**
-- Placeholder, character-count and some secondary text use a light grey (`#94a3b8`) with a contrast of roughly 2.5 : 1 on white, below the 4.5 : 1 guideline for normal text.
-- *Edit* / *Delete* buttons are about 28 px tall, below the 44 px touch-target guideline.
+- Contrast ratio resolved: secondary text, placeholders, and character counter use `#64748b` on white (4.61 : 1, passing WCAG 2.2 AA).
+- Action buttons enlarged to 36 px min-height with expanded padding (though below the strict 44 px mobile recommendation).
 - Delete confirmation uses the browser's `confirm()` prompt.
-- Placeholder navigation links (§6) can be focused but do nothing.
+- Navigation anchors smoothly scroll to real page sections with active state tracking.
 - No screen-reader or cross-browser testing has been performed, and no complete accessibility audit exists. Full WCAG 2.2 AA conformance is therefore **not** claimed.

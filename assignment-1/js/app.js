@@ -389,7 +389,24 @@ function renderApplications(appList) {
 
   // Toggle empty state
   if (!appList || appList.length === 0) {
-    if (emptyState) emptyState.hidden = false;
+    if (emptyState) {
+      emptyState.hidden = false;
+      const titleEl = document.getElementById('empty-state-title');
+      const textEl = document.getElementById('empty-state-text');
+      const resetBtn = document.getElementById('reset-filters-btn');
+
+      if (applications.length === 0) {
+        // Dataset is completely empty (e.g. all records deleted)
+        if (titleEl) titleEl.textContent = 'No applications yet';
+        if (textEl) textEl.textContent = "You haven't added any internship applications yet. Click '+ Add Application' above to record your first one.";
+        if (resetBtn) { resetBtn.hidden = true; resetBtn.style.display = 'none'; }
+      } else {
+        // Records exist, but active search/filter returned no results
+        if (titleEl) titleEl.textContent = 'No applications found';
+        if (textEl) textEl.textContent = 'No internship records match your current filter or search criteria.';
+        if (resetBtn) { resetBtn.hidden = false; resetBtn.style.display = ''; }
+      }
+    }
     return;
   }
 
@@ -767,6 +784,12 @@ function openApplicationDialog(mode = 'add', appId = null) {
   } else {
     dialog.setAttribute('open', '');
   }
+
+  // Ensure keyboard focus starts on Company Name rather than dialog close button
+  setTimeout(() => {
+    const companyInput = document.getElementById('app-company');
+    if (companyInput) companyInput.focus();
+  }, 50);
 }
 
 /**
@@ -998,6 +1021,19 @@ function setupEventListeners() {
       filterAndRenderApplications();
     });
   }
+
+  // 9. Navigation active state switching
+  const navLinks = document.querySelectorAll('.sidebar-nav .nav-link');
+  navLinks.forEach((link) => {
+    link.addEventListener('click', () => {
+      navLinks.forEach((l) => {
+        l.classList.remove('active');
+        l.removeAttribute('aria-current');
+      });
+      link.classList.add('active');
+      link.setAttribute('aria-current', 'page');
+    });
+  });
 }
 
 /**

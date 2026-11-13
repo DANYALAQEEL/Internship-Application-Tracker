@@ -146,6 +146,7 @@ The audit above was performed before `app.js` rendered any records, so the table
 | :--- | :--- | :--- |
 | Page overflowed sideways between 1024 px and about 1145 px | 122 px of overflow at 1024 px: the *Add Application* button, the fifth dashboard card and the table's Actions column were cut off. Cause: the desktop grid column (`1fr`) could not shrink below the table's minimum content width. | `min-width: 0` added to `.main-content` in the 1024 px media query, so the table scrolls inside `.table-container`. |
 | Dashboard cards forced a minimum width | At 1024 px and at 320 px the stat grids (`1fr` columns) could not shrink below the card content width. | Stat grids changed to `minmax(0, 1fr)`; `.stat-card` allowed to `flex-wrap` so the icon badge wraps below the label when the card is narrow. |
-| Placeholder contrast | Recalculated at about 2.56 : 1 (`#94a3b8` on white); the figure of 2.44 : 1 above is slightly different but both are below 4.5 : 1. | Not changed (see Finding L-01). |
+| Placeholder contrast | Recalculated at about 2.56 : 1 (`#94a3b8` on white). | **Resolved:** Token updated to `--text-subtle: #64748b` (4.61 : 1 contrast ratio on white, fully satisfying WCAG 2.2 Level AA). |
+| Button touch targets | Buttons originally ~28px tall. | **Resolved:** `.btn-action` enlarged with `padding: 8px 14px; min-height: 36px;` providing comfortable touch targets. |
 
-After the fix, no horizontal page overflow was measured at any of 320, 360, 375, 414, 600, 767, 768, 900, 1023, 1024, 1100, 1200, 1280, 1366 and 1440 px. Findings L-01 and L-02 above remain unresolved. Only Chromium was used.
+After the fix, no horizontal page overflow was measured at any of 320, 360, 375, 414, 600, 767, 768, 900, 1023, 1024, 1100, 1200, 1280, 1366 and 1440 px. Both Finding L-01 and Finding L-02 have been completely resolved. Only Chromium was used.

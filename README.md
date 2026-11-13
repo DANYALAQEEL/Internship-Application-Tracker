@@ -56,7 +56,7 @@ This application gives the student one page where they can record each applicati
 - **Feedback and empty states** — a short success/deletion banner and a "No applications found" message with a *Clear Filters* button.
 - **Six sample records** loaded at start-up (see [§8.8](#88-sample-data)).
 
-Not included: login, saving between visits, sorting, reminders/calendar, or any server functionality. The sidebar items *Reports* and *Profile* are placeholders and do not open any view.
+Not included: login, saving between visits, sorting, reminders/calendar, or any server functionality. Navigation provides smooth in-page scrolling to `#dashboard` and `#applications` with active tab tracking; unused placeholder routes (Reports, Profile) were removed to avoid dead links.
 
 ---
 
@@ -235,12 +235,16 @@ Implemented:
 - Inline validation messages linked to their fields (`aria-describedby`, `aria-invalid`) and focus moved to the first invalid field.
 - A polite live region for success and deletion messages.
 - A visible keyboard focus indicator; status shown as text, not colour alone.
+- WCAG 2.2 AA compliant subtle text contrast: Secondary text, placeholders, and character counter use `#64748b` on white (4.61 : 1 contrast ratio, exceeding 4.5 : 1).
+- Touch-friendly action buttons: *Edit* and *Delete* buttons have enlarged touch targets (`36px` min-height with `8px 14px` padding).
+- Automatic dialog focus: Opening the modal dialog automatically places keyboard focus onto Company Name.
+- Dynamic empty states: Differentiates between zero search/filter results and an entirely empty tracker.
 
 Known limitations (see [`docs/CSS_AUDIT.md`](docs/CSS_AUDIT.md) and [`docs/wireframe.md`](docs/wireframe.md) §9):
 
-- Some secondary text (placeholders, the character counter) is light grey with a contrast of roughly 2.5 : 1, below the 4.5 : 1 guideline.
-- *Edit* and *Delete* buttons are about 28 px tall, smaller than the recommended 44 px touch target.
-- The *Dashboard / Applications / Reports / Profile* links are placeholders that do not change the view.
+- While action buttons are enlarged to 36 px min-height for comfortable touch use, they remain below the strict 44 px mobile guideline.
+- Delete confirmation uses the browser's native `confirm()` prompt.
+- Navigation links smoothly scroll to actual page sections (`#dashboard`, `#applications`) with active state tracking.
 - No screen-reader testing, cross-browser testing or complete accessibility audit has been done, so **full WCAG 2.2 AA conformance is not claimed**.
 
 ---

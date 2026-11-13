@@ -42,7 +42,7 @@ The five statuses are `Applied`, `Under Review`, `Interview`, `Offered` and `Rej
 
 ### 1.4 What the application does *not* do
 
-To avoid ambiguity, the following are **not** part of Assignment 1: user accounts or login, saving data between visits, a server or database, reminders or calendar features, sorting, importing/exporting data, or editing from anywhere other than the Add/Edit dialog. The sidebar items *Reports* and *Profile* are visual placeholders only (see [`wireframe.md`](wireframe.md) §6).
+To avoid ambiguity, the following are **not** part of Assignment 1: user accounts or login, saving data between visits, a server or database, reminders or calendar features, sorting, importing/exporting data, or editing from anywhere other than the Add/Edit dialog. Navigation provides direct, smooth in-page scrolling to `#dashboard` and `#applications`; unused placeholder routes were removed to eliminate dead links (see [`wireframe.md`](wireframe.md) §6).
 
 ---
 
@@ -155,7 +155,7 @@ The stylesheet is written **mobile-first**: the base rules describe the narrow l
 
 The *Add / Edit* dialog is a native `<dialog>` opened with `showModal()`. It is centred, is `100% − 32 px` wide up to a maximum of 540 px, scrolls inside itself when the screen is short (maximum height 90 vh), and uses a dimmed, slightly blurred backdrop.
 
-**Limits of this strategy.** Between 1024 px and roughly 1200 px the five dashboard cards are narrow, so each card's icon badge wraps below its label (`flex-wrap`). The records table is wider than the main column at these widths and scrolls inside its own container. The action buttons (*Edit*, *Delete*) are about 28 px tall and do not meet the 44 px touch-target guideline. Layout was checked at 375, 768, 1024 and 1440 px in Chromium only.
+**Limits of this strategy.** Between 1024 px and roughly 1200 px the five dashboard cards are narrow, so each card's icon badge wraps below its label (`flex-wrap`). The records table is wider than the main column at these widths and scrolls inside its own container. Action buttons (*Edit*, *Delete*) were enlarged to 36 px min-height with increased padding for comfortable touch targets. Layout was checked at 375, 768, 1024 and 1440 px in Chromium only.
 
 ---
 
